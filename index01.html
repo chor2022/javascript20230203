@@ -7,6 +7,12 @@
 
     <style>
 
+      body {
+
+        background-color: black;
+
+      }
+
       .text {
 
         position: absolute;
@@ -14,6 +20,10 @@
         bottom: 0;
 
         font-size: 72px;
+
+        color: lightgreen;
+
+        text-shadow: 0 0 5px green;
 
       }
 
@@ -25,15 +35,20 @@
 
     <script>
 
-      for (let i = 0; i < 20; i++) {
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+
+
+
+      for (let i = 0; i < 50; i++) {
 
         const text = document.createElement("p");
 
         text.classList.add("text");
 
-        text.innerText = "自分で考えないやつ、オワコン";
+        text.innerText = characters[Math.floor(Math.random() * characters.length)];
 
-        text.style.left = `${i * 50}px`;
+        text.style.left = `${Math.random() * window.innerWidth}px`;
 
         document.body.appendChild(text);
 
@@ -42,14 +57,27 @@
 
         let bottom = 0;
 
+        const speed = Math.random() * 10 + 5;
+
 
 
 
         setInterval(() => {
 
-          bottom += (i + 1);
+          bottom += speed;
 
           text.style.bottom = `${bottom}px`;
+
+
+
+
+          if (bottom > window.innerHeight) {
+
+            bottom = 0;
+
+            text.style.left = `${Math.random() * window.innerWidth}px`;
+
+          }
 
         }, 50);
 
@@ -60,3 +88,7 @@
   </body>
 
 </html>
+
+
+
+
